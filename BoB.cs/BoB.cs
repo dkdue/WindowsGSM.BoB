@@ -34,7 +34,7 @@ namespace WindowsGSM.Plugins
 
 
         // - Game server Fixed variables
-        public override string StartPath => @""; // Game server start path
+        public override string StartPath => @"WindowsServer\BeastsOfBermuda\Binaries\Win64\BeastsOfBermudaServer.exe"; // Game server start path
         public string FullName = "Beasts of Bermuda Dedicated Server"; // Game server FullName
         public bool AllowsEmbedConsole = true;  // Does this server support output redirect?
         public int PortIncrements = 1; // This tells WindowsGSM how many ports should skip after installation
@@ -46,13 +46,13 @@ namespace WindowsGSM.Plugins
         public string QueryPort = "27020"; // Default query port
         public string Defaultmap = "Forest_Island"; // Default map name
         public string Maxplayers = "32"; // Default maxplayers
-        public string Additional = "-GameMode Life_Cycle"; // Additional server start parameter
+        public string Additional = "-GameMode Life_Cycle -MapName Forest_Island -SessionName My_awesome_server "; // Additional server start parameter
 
 
         // - Create a default cfg for the game server after installation
         public async void CreateServerCFG()
         {
-            string configPath = Functions.ServerPath.GetServersServerFiles(_serverData.ServerID, @"TheIsle\Saved\Config\WindowsServer\Game.ini");
+            string configPath = Functions.ServerPath.GetServersServerFiles(_serverData.ServerID, @"WindowsServer\BeastsOfBermuda\Saved\Config\WindowsServer\Game.ini");
             Directory.CreateDirectory(Path.GetDirectoryName(configPath));
 
             string name = String.Concat(FullName.Where(c => !Char.IsWhiteSpace(c)));
@@ -72,7 +72,7 @@ namespace WindowsGSM.Plugins
         public async Task<Process> Start()
         {
             // Check for files in Win64
-            string win64 = Path.Combine(ServerPath.GetServersServerFiles(_serverData.ServerID, @"TheIsle\Binaries\Win64\"));
+            string win64 = Path.Combine(ServerPath.GetServersServerFiles(_serverData.ServerID, @"WindowsServer\BeastsOfBermuda\Binaries\Win64\"));
             string[] neededFiles = { "steamclient64.dll", "tier0_s64.dll", "vstdlib_s64.dll" };
 
             foreach (string file in neededFiles)
@@ -86,11 +86,11 @@ namespace WindowsGSM.Plugins
             string shipExePath = Functions.ServerPath.GetServersServerFiles(_serverData.ServerID, StartPath);
 
             // Prepare start parameter
-            //string param = string.IsNullOrWhiteSpace(_serverData.ServerMap) ? string.Empty : $"{_serverData.ServerMap}?listen";
-            string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $" MultiHome={_serverData.ServerIP}";
+            string param = string.IsNullOrWhiteSpace(_serverData.ServerMap) ? string.Empty : $"{_serverData.ServerMap}?listen";
+            param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?MultiHome={_serverData.ServerIP}";
             param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?Port={_serverData.ServerPort}";
 			param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?QueryPort={_serverData.ServerQueryPort}";
-            param += $"?{_serverData.ServerParam}? -nosteamclient -game -server -log";
+            param += $"?{_serverData.ServerParam} -nosteamclient -game -server -log";
 
             // Prepare Process
             var p = new Process
