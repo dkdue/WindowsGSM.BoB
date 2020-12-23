@@ -10,15 +10,15 @@ WindowsGSM >= 1.21.0
   3. Click [RELOAD PLUGINS] button or restart WindowsGSM
   
 # Config
-  1.Edit Config in WindowsGSM and change the Server Start Param
+  1.Edit Config in WindowsGSM and change the Server Start Param:
   
     -MapName :  Currently, one can open a server on
-              Test_Performance
-              Bloodbath
-              Forest_Island
-              Ancestral_Plains
-              Rival_Shores
-              If not specified, defaults to Test_Performance
+                Test_Performance
+                Bloodbath
+                Forest_Island
+                Ancestral_Plains
+                Rival_Shores
+                If not specified, defaults to Test_Performance
               
               
     -SessionName :  Change the name of the server, respecting spaces with a low slash "_"        
