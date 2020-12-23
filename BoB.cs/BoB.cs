@@ -28,7 +28,7 @@ namespace WindowsGSM.Plugins
         public override string AppId => "882430 "; // Game server appId
 
         // - Standard Constructor and properties
-        public TheIsle(ServerConfig serverData) : base(serverData) => base.serverData = _serverData = serverData;
+        public BoB(ServerConfig serverData) : base(serverData) => base.serverData = _serverData = serverData;
         private readonly ServerConfig _serverData;
         public string Error, Notice;
 
