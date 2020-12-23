@@ -46,7 +46,7 @@ namespace WindowsGSM.Plugins
         public string QueryPort = "27020"; // Default query port
         public string Defaultmap = "Forest_Island"; // Default map name
         public string Maxplayers = "32"; // Default maxplayers
-        public string Additional = "-GameMode Life_Cycle -MapName Forest_Island -SessionName My_awesome_server "; // Additional server start parameter
+        public string Additional = "-GameMode Life_Cycle -MapName Forest_Island -SessionName My_awesome_server -NumPlayers 32"; // Additional server start parameter
 
 
         // - Create a default cfg for the game server after installation
