@@ -1,5 +1,5 @@
 # WindowsGSM.BoB
-WindowsGSM plugin that provides Beasts of Bermuda Dedicated server support!
+🧩WindowsGSM plugin that provides Beasts of Bermuda Dedicated server support!
 
 # The Game
 https://store.steampowered.com/app/719890/Beasts_of_Bermuda/
